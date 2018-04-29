@@ -1,0 +1,12 @@
+<section class="main" *ngIf="todos.length > 0">
+    <div class="note-list">
+      <div class = "note" *ngFor="let todo of todos">
+          <div class = "note-tags">
+            <span class = "tag" *ngFor="let tag of todo.tags">{{tag}}</span>
+          </div>
+          <label>{{todo.title}}</label>
+          <button class="destroy" (click)="removeTodo(todo)">Delete</button>
+          <a routerLink="/note/{{todo.id}}" class="edit">Edit</a>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,15 @@
+
+  <section class="main">
+      <div class="note-list">
+        <div class = "note scale">
+            <div class = "note-tags">
+            </div>
+            <textarea
+            [(ngModel)]="newTodo.title"></textarea>
+            <a routerLink="/note-list">
+              <button class="save" (click)="addTodo(newTodo)">Save</button>
+            </a>       
+        </div>
+      </div>
+    </section>
+  

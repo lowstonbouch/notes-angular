@@ -2,14 +2,12 @@ import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
  
-import { AppComponent }         from './app.component';
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import { HeroesComponent }      from './heroes/heroes.component';
-import { HeroService }          from './hero.service';
-import { MessageService }       from './message.service';
-import { MessagesComponent }    from './messages/messages.component';
- 
+import { NoteAppCompontent } from './note-app.component';
+import { NoteListComponent } from './note-list/note-list.component';
+import { AddNoteComponent } from './add-note/add-note.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
+import { TodoService } from './todo.service';
+
 import { AppRoutingModule }     from './app-routing.module';
  
 @NgModule({
@@ -19,13 +17,12 @@ import { AppRoutingModule }     from './app-routing.module';
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent
+    NoteAppCompontent,
+    NoteListComponent,
+    EditNoteComponent,
+    AddNoteComponent
   ],
-  providers: [ HeroService, MessageService ],
-  bootstrap: [ AppComponent ]
+  providers: [ TodoService ],
+  bootstrap: [ NoteAppCompontent ]
 })
 export class AppModule { }
