@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { Note } from '../note';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'note-list',
@@ -9,17 +9,17 @@ import { TodoService } from '../todo.service';
 })
 export class NoteListComponent
 {
-  newTodo: Todo = new Todo();
-  constructor( private todoService: TodoService ) {}
+  newNote: Note = new Note();
+  constructor( private noteService: NoteService ) {}
 
-  removeTodo( todo )
+  removeNote( note )
   {
-    this.todoService.deleteTodoById( todo.id );
+    this.noteService.deleteNoteById( note.id );
   }
 
-  get todos()
+  get notes()
   {
-    return this.todoService.getAllTodos();
+    return this.noteService.getAllNotes();
   }
 
 }

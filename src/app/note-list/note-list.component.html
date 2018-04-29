@@ -1,12 +1,12 @@
-<section class="main" *ngIf="todos.length > 0">
+<section class="main" *ngIf="notes.length > 0">
     <div class="note-list">
-      <div class = "note" *ngFor="let todo of todos">
+      <div class = "note" *ngFor="let note of notes">
           <div class = "note-tags">
-            <span class = "tag" *ngFor="let tag of todo.tags">{{tag}}</span>
+            <span class = "tag" *ngFor="let tag of note.tags">{{tag}}</span>
           </div>
-          <label>{{todo.title}}</label>
-          <button class="destroy" (click)="removeTodo(todo)">Delete</button>
-          <a routerLink="/note/{{todo.id}}" class="edit">Edit</a>
+          <label>{{note.title}}</label>
+          <button class="destroy" (click)="removeNote(note)">Delete</button>
+          <a routerLink="/note/{{note.id}}" class="edit">Edit</a>
       </div>
     </div>
   </section>

@@ -1,14 +1,14 @@
 
-  <section class="main" *ngIf="todo">
+  <section class="main" *ngIf="note">
     <div class="note-list">
       <div class = "note scale">
           <div class = "note-tags">
-            <span class = "tag" *ngFor="let tag of todo.tags">{{tag}}<button (click)="destroyTag(tag)">x</button></span>
+            <span class = "tag" *ngFor="let tag of note.tags">{{tag}}<button (click)="destroyTag(tag)">x</button></span>
           </div>
           <textarea
-          [(ngModel)]="todo.title"></textarea>
+          [(ngModel)]="note.title"></textarea>
           <a routerLink="/note-list">
-            <button class="save" (click)="saveTodo(todo)">Save</button>
+            <button class="save" (click)="saveNote(note)">Save</button>
           </a>       
       </div>
     </div>

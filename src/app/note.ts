@@ -1,4 +1,4 @@
-export class Todo {
+export class Note {
   id: number;
   title: string = '';
   tags: Array<string> = [];

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { Note } from '../note';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'edit-note',
@@ -10,37 +10,47 @@ import { TodoService } from '../todo.service';
 })
 export class EditNoteComponent implements OnInit
 {
-  @Input() todo: Todo;
+  @Input() note: Note;
  
   constructor(
     private route: ActivatedRoute,
-    private todoService: TodoService,
+    private noteService: NoteService,
   ) {}
  
   ngOnInit(): void {
-    this.getHero();
+    this.getNote();
   }
  
-  getHero(): void {
+  getNote(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.todo = this.todoService.getTodoById(id);
+    this.note = this.noteService.getNoteById(id);
   }
 
   destroyTag( tag )
   {
-    this.todo.tags = this.todo.tags.filter((item)=>{if(item !== tag){return item}});
+    this.note.tags = this.note.tags.filter((item)=>{if(item !== tag){return item}});
   }
 
-  saveTodo( todo )
+  saveNote( note )
   {
-    let array:  Array<string> = this.todo.title.split(' ');
+    let array:  Array<string> = this.note.title.split(' ');
     array.forEach((item) => {
       if(item.slice(0,1) === '#'){
-        this.todo.tags.push(item);
+        if(this.note.tags.length){
+          if(this.note.tags.every((tag)=>{
+            if(tag !== item){
+              return true;
+            }
+          })){
+            this.note.tags.push(item);
+          }
+        }else{
+          this.note.tags.push(item);
+        }
       }
     })
-    this.todo.title = this.todo.title.replace(/#/g, '');
-    this.todoService.toggleTodoEdit( this.todo);
+    this.note.title = this.note.title.replace(/#/g, '');
+    this.noteService.toggleNoteEdit( this.note);
   }
 
 }

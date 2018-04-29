@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { Note } from '../note';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'add-note',
@@ -10,24 +10,34 @@ import { TodoService } from '../todo.service';
 })
 export class AddNoteComponent
 {
-  newTodo: Todo = new Todo();
+  newNote: Note = new Note();
 
   constructor(
     private route: ActivatedRoute,
-    private todoService: TodoService,
+    private noteService: NoteService,
   ) {}
 
-  addTodo()
+  addNote()
   {
-    let array:  Array<string> = this.newTodo.title.split(' ');
+    let array:  Array<string> = this.newNote.title.split(' ');
     array.forEach((item) => {
       if(item.slice(0,1) === '#'){
-        this.newTodo.tags.push(item);
+        if(this.newNote.tags.length){
+          if(this.newNote.tags.every((tag)=>{
+            if(tag !== item){
+              return true;
+            }
+          })){
+            this.newNote.tags.push(item);
+          }
+        }else{
+          this.newNote.tags.push(item);
+        }
       }
     })
-    this.newTodo.title = this.newTodo.title.replace(/#/g, '');
-    this.todoService.addTodo( this.newTodo );
-    this.newTodo = new Todo();
+    this.newNote.title = this.newNote.title.replace(/#/g, '');
+    this.noteService.addNote( this.newNote );
+    this.newNote = new Note();
   }
 
 }
